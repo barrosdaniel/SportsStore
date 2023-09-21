@@ -5,12 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<StoreDbContext>(options => 
+builder.Services.AddDbContext<StoreDbContext>(opts => 
 {
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]);
+    opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]);
 });
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
